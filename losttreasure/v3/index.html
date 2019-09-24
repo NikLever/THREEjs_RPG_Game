@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Lost Treasure - the mystery puzzle game</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="Lost Treasure is a 3d find and puzzle game. Using the Three.js library. author:Nik Lever ©2018 category:application-javascript" />
+		<meta property="og:url" content="http://niklever.com/games/losttreasure" />
+		<meta property="og:type" content="product" />
+		<meta property="og:title" content="Lost Treasure - the mystery puzzle game" />
+		<meta property="og:description" content="Lost Treasure is a 3d find and puzzle game. Using the Three.js library. author:Nik Lever ©2018 category:application-javascript" />
+		<meta property="og:image" content="http://niklever.com/games/pipedown/assets/losttreasure-og.jpg" />
+		<meta property="og:image:secure_url" content="https://niklever.com/games/pipedown/assets/losttreasure-og.jpg" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1265" />
+		<meta property="og:image:height" content="817" />
+		<meta property="og:image:alt" content="Lost Treasure - the mystery puzzle game" />
+		<meta property='og:video' content='https://www.youtube.com/v/1r9V_JEEMlA' />
+		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Kavivanar" rel="stylesheet">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#message{
+				position:absolute;
+				left: 50%;
+				top: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				font-family: 'Kavivanar', san-serif;
+				font-size: 40px;
+				width:80%;
+				max-width:280px;
+				padding: 15px 15px 50px 15px;
+				text-align: center;
+				display:none;
+				align-content: center;
+				justify-content: center;
+				background-color: aliceblue;
+				border: medium solid #3D455C;
+				border-radius: 20px;
+				color: #3D455C;
+				z-index: 99;
+			}
+			#message_ok{
+				position: absolute;
+				bottom: 10px;
+				padding: 10px 20px 10px 20px;
+				font-family: sans-serif;
+				font-size: 20px;
+				background-color: #3D455C;
+				color: #fff;
+				border-radius: 8px;
+				border: medium solid #696882;
+			}
+			
+			#briefcase{
+				position: absolute;
+				left: 10px;
+				bottom: 10px;
+				max-width: 200px;
+				background: #FFF;
+				height: 60px;
+				margin: 8px;
+				border-radius: 25px;
+			}
+			
+			#briefcase-btn{
+				position: absolute;
+				left: 15px;
+				bottom: 15px;
+				width: 40px;
+				height: 40px;
+				border: none;
+				border-radius: 50%;
+				background:#3B53A2;
+				font-size: 25px;
+				color: #fff;
+			}
+			
+			#camera-btn{
+				position: absolute;
+				right: 15px;
+				bottom: 15px;
+				width: 40px;
+				height: 40px;
+				border: none;
+				border-radius: 50%;
+				background:#3B53A2;
+				font-size: 25px;
+				color: #fff;
+			}
+			#overlay{
+				position:absolute;
+				width: 100%;
+				height: 100%;
+				background: #000000;
+				z-index: 10;
+				opacity: 1;
+			}
+			.fade-in {
+				animation-name: fade-in;
+				animation-duration: 2s;
+			}
+
+			@keyframes fade-in {
+				from {opacity: 1;}
+				to {opacity: 0;}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="message">
+			<p id="message_text"></p>
+			<button id="message_ok">OK</button>
+		</div>
+		<div id="overlay"></div>
+		<button id="camera-btn"><i class="fas fa-camera"></i></button>
+		<div id="briefcase"></div>
+		<button id="briefcase-btn"><i class="fas fa-briefcase"></i></button>
+		
+		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+		
+        <script src="../../libs/three.min.js"></script>
+		<script src="../../libs/inflate.min.js"></script>
+		<script src="../../libs/FBXLoader.js"></script>
+		<script src="../../libs/Detector.js"></script>
+		<script src="game.js"></script>
+		<script>
+			onError = function(error){
+				console.error(JSON.stringify(error));
+			}
+			
+			document.addEventListener("DOMContentLoaded", function(){
+				const game = new Game();
+				window.game = game;//For debugging only
+			});
+		</script>
+	</body>
+</html>
+
+
